@@ -8,11 +8,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
 import ProductReducer, { productFetch } from "./features/productSlice";
+import { productApi } from './features/productApi';
 
 const store = configureStore({
   reducer: {
-    product: ProductReducer
+    product: ProductReducer,
+    [productApi.reducerPath]: productApi.reducer,
   },
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware().concat(productApi.middleware),
+  
 });
 
 store.dispatch(productFetch());
