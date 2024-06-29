@@ -1,4 +1,4 @@
-import { productApi, useGetAllProductQuery } from "../../features/productApi";
+import { useGetAllProductQuery } from "../../features/productApi";
 
 const Home = () => {
     const { data, error, isLoading } = useGetAllProductQuery();
@@ -11,9 +11,9 @@ const Home = () => {
             ) : (
                 <>
                 <h2>New Arrivals</h2>
-                <div className="product">
+                <div className="products">
                     {data?.map( product => <div key={product.id} className="product">
-                        <h3>{productApi.name}</h3>
+                        <h3>{product.name}</h3>
                         <img src={product.image} alt={product.name} />
                         <div className="detail">
                             <span>{product.desc}</span>
