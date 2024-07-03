@@ -4,15 +4,17 @@ import './index.css';
 import App from '././app/App';
 import reportWebVitals from './reportWebVitals';
 
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, createReducer } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
 import ProductReducer, { productFetch } from "./features/productSlice";
 import { productApi } from './features/productApi';
+import cartReducer from "./features/cartSlice"
 
 const store = configureStore({
   reducer: {
     product: ProductReducer,
+    cart: cartReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) => 
